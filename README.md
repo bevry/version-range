@@ -63,7 +63,7 @@ Doesn't support `&&` and `-releaseTag`.
 <a href="https://deno.land" title="Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js"><h3>Deno</h3></a>
 
 ``` typescript
-import pkg from 'https://unpkg.com/version-range@^1.0.0/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/version-range@^1.1.0/edition-deno/index.ts'
 ```
 
 <h3><a href="https://editions.bevry.me" title="Editions are the best way to produce and consume packages you care about.">Editions</a></h3>
@@ -105,7 +105,7 @@ import pkg from 'https://unpkg.com/version-range@^1.0.0/edition-deno/index.ts'
 
 These amazing people are maintaining this project:
 
-<ul><li><a href="https://github.com/balupton">Benjamin Lupton</a> — <a href="https://github.com/bevry/version-range/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/version-range">view contributions</a></li></ul>
+<ul><li><a href="https://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/version-range/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/version-range">view contributions</a></li></ul>
 
 <h3>Sponsors</h3>
 
@@ -123,7 +123,9 @@ No sponsors yet! Will you be the first?
 
 <h3>Contributors</h3>
 
-No contributors yet! Will you be the first?
+These amazing people have contributed code to this project:
+
+<ul><li><a href="https://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/bevry/version-range/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository bevry/version-range">view contributions</a></li></ul>
 
 <a href="https://github.com/bevry/version-range/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>
 
@@ -136,7 +138,7 @@ No contributors yet! Will you be the first?
 
 Unless stated otherwise all works are:
 
-<ul><li>Copyright &copy; 2020+ <a href="https://github.com/balupton">Benjamin Lupton</a></li></ul>
+<ul><li>Copyright &copy; 2020+ <a href="https://balupton.com">Benjamin Lupton</a></li></ul>
 
 and licensed under:
 

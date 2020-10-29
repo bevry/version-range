@@ -1,6 +1,6 @@
 {
   "name": "version-range",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Check version ranges like `>=N` and `X || Y || Z` with support for Node.js, Web Browsers, Deno, and TypeScript.",
   "homepage": "https://github.com/bevry/version-range",
   "license": "MIT",
@@ -62,7 +62,7 @@
     }
   },
   "funding": "https://bevry.me/fund",
-  "author": "2020+ Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
+  "author": "2020+ Benjamin Lupton <b@lupton.cc> (https://balupton.com)",
   "maintainers": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
@@ -147,22 +147,22 @@
     "version-compare": "^1.0.0"
   },
   "devDependencies": {
-    "@bevry/update-contributors": "^1.17.0",
+    "@bevry/update-contributors": "^1.18.0",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
-    "assert-helpers": "^8.0.1",
+    "assert-helpers": "^8.1.0",
     "eslint": "^7.12.1",
-    "eslint-config-bevry": "^3.22.0",
-    "eslint-config-prettier": "^6.14.0",
+    "eslint-config-bevry": "^3.23.0",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
     "kava": "3.2.0",
-    "make-deno-edition": "^1.1.1",
+    "make-deno-edition": "^1.2.0",
     "prettier": "^2.1.2",
-    "projectz": "^2.16.0",
+    "projectz": "^2.17.0",
     "surge": "^0.21.6",
     "typedoc": "^0.19.2",
     "typescript": "^4.0.5",
-    "valid-directory": "^3.4.0"
+    "valid-directory": "^3.5.0"
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
@@ -207,5 +207,7 @@
       "ES5"
     ]
   },
-  "contributors": []
+  "contributors": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+  ]
 }

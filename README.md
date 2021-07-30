@@ -35,7 +35,7 @@ Check version ranges like `>=N` and `X || Y || Z` with support for Node.js, Web 
 
 ## Usage
 
-[Complete API Documentation.](http://master.version-range.bevry.surge.sh/docs/globals.html)
+[Complete API Documentation.](http://master.version-range.bevry.surge.sh/docs/)
 
 Super fast and super compatible version range comparison for the most common use cases.
 

@@ -122,7 +122,7 @@
   "type": "module",
   "main": "edition-es5/index.js",
   "exports": {
-    "node": {
+    ".": {
       "import": "./edition-es5-esm/index.js",
       "require": "./edition-es5/index.js"
     }

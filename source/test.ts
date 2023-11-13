@@ -92,7 +92,7 @@ const fixtures: Array<{
 kava.suite('version-range', function (suite, test) {
 	for (const fixture of fixtures) {
 		const name = `match(${JSON.stringify(fixture.input[0])}, ${JSON.stringify(
-			fixture.input[1],
+			fixture.input[1]
 		)}) = ${JSON.stringify(fixture.expected)}`
 		test(name, function () {
 			equal(match(...fixture.input), fixture.expected)

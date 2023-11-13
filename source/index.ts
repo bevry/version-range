@@ -13,7 +13,7 @@ const regex = /^([<>=]*)\s*([\d.]+)\s*$/
  */
 export default function withinVersionRange(
 	subject: Version,
-	range: Range,
+	range: Range
 ): boolean {
 	let result: boolean = false
 	if (!Array.isArray(range)) range = String(range).split(/\s*\|\|\s*/)
@@ -43,7 +43,7 @@ export default function withinVersionRange(
 				break
 			default:
 				throw new Error(
-					`version range comparator was invalid: ${JSON.stringify(part)}`,
+					`version range comparator was invalid: ${JSON.stringify(part)}`
 				)
 		}
 		if (pass) result = true

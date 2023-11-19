@@ -1,52 +1,173 @@
-import versionCompare from 'version-compare'
-
 export type Version = string | number
 export type Range = Version | Version[]
 
-const regex = /^([<>=]*)\s*([\d.]+)\s*$/
+const orRegex = /\s*\|\|\s*/
+const rangeRegex = /^\s*([<>=~^]*)\s*([\d.]+)(-.+)?\s*$/
 
 /**
- * Compare two versions quickly.
- * @param current Is this version greater, equal to, or less than the other?
- * @param other The version to compare against the current version
- * @return 1 if current is greater than other, 0 if they are equal or equivalent, and -1 if current is less than other
+ * Check if the version is within the range
+ * @param subject The version to check against the range
+ * @param range The range to check the version against
  */
 export default function withinVersionRange(
 	subject: Version,
 	range: Range
 ): boolean {
-	let result: boolean = false
-	if (!Array.isArray(range)) range = String(range).split(/\s*\|\|\s*/)
-	for (const part of range) {
-		const parts = String(part).match(regex) || []
-		const [_, comparator, version] = parts
-		if (!version)
-			throw new Error(`version range was invalid: ${JSON.stringify(part)}`)
-		const diff = versionCompare(subject, version)
-		let pass: boolean = false
+	// prepare and verify subject
+	subject = String(subject)
+	const [subjectMajor = null, subjectMinor = null, subjectPatch = null] =
+		subject.split('.')
+	if (subjectMajor === null)
+		throw new Error(`subject was invalid: ${JSON.stringify(subject)}`)
+	const subjectMajorNumber = Number(subjectMajor || 0)
+	const subjectMinorNumber = Number(subjectMinor || 0)
+	const subjectPatchNumber = Number(subjectPatch || 0)
+
+	// cycle through the or conditions
+	let combinedResult: boolean = false
+	if (!Array.isArray(range)) range = String(range).split(orRegex)
+	for (const orRange of range) {
+		// process range
+		const [_, comparator, target, prerelease] =
+			String(orRange).match(rangeRegex) || []
+
+		// prepare and verify target
+		const [targetMajor = null, targetMinor = null, targetPatch = null] = (
+			target || ''
+		).split('.')
+		if (!target || targetMajor == null || prerelease)
+			throw new Error(`range was invalid: ${JSON.stringify(orRange)}`)
+		const targetMajorNumber = Number(targetMajor || 0)
+		const targetMinorNumber = Number(targetMinor || 0)
+		const targetPatchNumber = Number(targetPatch || 0)
+
+		// handle comparator
+		const pass: boolean = false
 		switch (comparator) {
+			case '^':
+				if (subjectMajorNumber === targetMajorNumber) {
+					if (subjectMinorNumber === targetMinorNumber) {
+						if (subjectPatchNumber >= targetPatchNumber) {
+							combinedResult = true
+						}
+					} else if (subjectMinorNumber >= targetMinorNumber) {
+						combinedResult = true
+					}
+				}
+				break
+			case '~':
+				if (subjectMajorNumber === targetMajorNumber) {
+					if (
+						subjectMinor !== null &&
+						subjectMinorNumber === targetMinorNumber
+					) {
+						if (subjectPatchNumber >= targetPatchNumber) {
+							combinedResult = true
+						}
+					}
+				}
+				break
 			case '>=':
-				pass = diff >= 0
+				if (subjectMajorNumber === targetMajorNumber) {
+					if (subjectMinorNumber === targetMinorNumber) {
+						if (subjectPatchNumber >= targetPatchNumber) {
+							combinedResult = true
+						}
+					} else if (subjectMinorNumber >= targetMinorNumber) {
+						combinedResult = true
+					}
+				} else if (subjectMajorNumber >= targetMajorNumber) {
+					combinedResult = true
+				}
 				break
 			case '>':
-				pass = diff === 1
+				if (subjectMajorNumber === targetMajorNumber) {
+					if (targetMinor === null) {
+						// x > x = false
+						// x.y > x = false
+					} else if (subjectMinorNumber === targetMinorNumber) {
+						if (targetPatch === null) {
+							// x.y > x.y = false
+							// x.y.z > x.y = false
+						} else if (subjectPatchNumber > targetPatchNumber) {
+							combinedResult = true
+						}
+					} else if (subjectMinorNumber > targetMinorNumber) {
+						combinedResult = true
+					}
+				} else if (subjectMajorNumber > targetMajorNumber) {
+					combinedResult = true
+				}
 				break
 			case '<':
-				pass = diff === -1
+				if (subjectMajorNumber === targetMajorNumber) {
+					if (subjectMinor === null) {
+						// x < x = false
+						// x < x.y = false
+					} else if (subjectMinorNumber === targetMinorNumber) {
+						if (subjectPatch === null) {
+							// x.y < x.y = false
+							// x.y < x.y.z = false
+						} else if (subjectPatchNumber < targetPatchNumber) {
+							combinedResult = true
+						}
+					} else if (subjectMinorNumber < targetMinorNumber) {
+						combinedResult = true
+					}
+				} else if (subjectMajorNumber < targetMajorNumber) {
+					combinedResult = true
+				}
 				break
 			case '<=':
-				pass = diff <= 0
+				if (subjectMajorNumber === targetMajorNumber) {
+					if (subjectMinor === null) {
+						if (targetMinor === null) {
+							// x <= x = true
+							combinedResult = true
+						}
+						// x <= x.y = false
+					} else if (targetMinor === null) {
+						// x.y <= x = true
+						combinedResult = true
+					} else if (subjectMinorNumber === targetMinorNumber) {
+						if (subjectPatch === null) {
+							if (targetPatch === null) {
+								// x.y <= x.y = true
+								combinedResult = true
+							}
+							// x.y <= x.y.z = false
+						} else if (targetPatch === null) {
+							// x.y.z <= x.y = true
+							combinedResult = true
+						} else if (subjectPatchNumber <= targetPatchNumber) {
+							// x.y.z <= x.y.z = true
+							combinedResult = true
+						}
+					} else if (subjectMinorNumber <= targetMinorNumber) {
+						combinedResult = true
+					}
+				} else if (subjectMajorNumber <= targetMajorNumber) {
+					combinedResult = true
+				}
 				break
 			case '=':
 			case '':
-				pass = diff === 0
+				if (subjectMajor === targetMajor) {
+					if (targetMinor === null) {
+						combinedResult = true
+					} else if (subjectMinor === targetMinor) {
+						if (targetPatch === null || subjectPatch === targetPatch) {
+							combinedResult = true
+						}
+					}
+				}
 				break
 			default:
 				throw new Error(
-					`version range comparator was invalid: ${JSON.stringify(part)}`
+					`range comparator was invalid: ${JSON.stringify(orRange)}`
 				)
 		}
-		if (pass) result = true
+		if (pass) combinedResult = true
 	}
-	return result
+	return combinedResult
 }

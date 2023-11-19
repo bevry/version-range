@@ -1,5 +1,12 @@
 # History
 
+## v4.0.0 2023 November 19
+
+-   Support `^` and `~` in version ranges
+-   Added a comprehensive test suite
+-   Some results may have changed compared to prior versions, however the results are now as expected
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v3.2.0 2023 November 14
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)

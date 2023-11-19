@@ -37,7 +37,7 @@ Check version ranges like `>=N` and `X || Y || Z` with support for Node.js, Web 
 
 [Complete API Documentation.](http://master.version-range.bevry.surge.sh/docs/)
 
-Super fast and super compatible version range comparison for the most common use cases. As semver has two different behaviours based on whether the version is coerced or not, this library differs to match our actual expectations, unlike semver. For example:
+Range comparison of versions for the most common use cases. Fast with broad ecosystem support.
 
 ```typescript
 import satisfies from 'version-range'
@@ -62,12 +62,16 @@ console.log(satisfies('1.0', '>=1.0.0')) // true
 console.log(satisfies('1.0.0', '>=1.0.0')) // true
 
 console.log(satisfies('1', '^1')) // true
-console.log(satisfies('1', '~1')) // false
+console.log(satisfies('1', '~1')) // false, not all 1.x versions (1.1, 1.2, etc) match 1.0.x
+console.log(satisfies('1', '^1.1')) // false, not all 1.x versions (1.0) match >=1.1<2
+console.log(satisfies('1', '~1.1')) // false, not all 1.x versions (1.0) match 1.1.x
 console.log(satisfies('1.0.0', '^1')) // true
 console.log(satisfies('1.0.0', '~1')) // true
 ```
 
-Doesn't support ranges that include `.x`, `&&`, `-releaseTag`, and `>X <Y`.
+The above results are expected, but not what the [`semver` package](https://www.npmjs.com/package/semver) returns. The semver package has two different behaviours based on whether the version is coerced or not, alternating between expected and unexpected results. This package differs to match our actual expectations, as you can see above.
+
+Doesn't support ranges that include `&&`, `-releaseTag`, and `>X <Y`, and does not do the special handling for `0.x` versions.
 
 <!-- INSTALL/ -->
 
@@ -83,7 +87,31 @@ Doesn't support ranges that include `.x`, `&&`, `-releaseTag`, and `>X <Y`.
 <a href="https://deno.land" title="Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js"><h3>Deno</h3></a>
 
 ``` typescript
-import pkg from 'https://unpkg.com/version-range@^4.0.0/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/version-range@^4.1.0/edition-deno/index.ts'
+```
+
+<a href="https://www.skypack.dev" title="Skypack is a JavaScript Delivery Network for modern web apps"><h3>Skypack</h3></a>
+
+``` html
+<script type="module">
+    import pkg from '//cdn.skypack.dev/version-range@^4.1.0'
+</script>
+```
+
+<a href="https://unpkg.com" title="unpkg is a fast, global content delivery network for everything on npm"><h3>unpkg</h3></a>
+
+``` html
+<script type="module">
+    import pkg from '//unpkg.com/version-range@^4.1.0'
+</script>
+```
+
+<a href="https://jspm.io" title="Native ES Modules CDN"><h3>jspm</h3></a>
+
+``` html
+<script type="module">
+    import pkg from '//dev.jspm.io/version-range@4.1.0'
+</script>
 ```
 
 <h3><a href="https://editions.bevry.me" title="Editions are the best way to produce and consume packages you care about.">Editions</a></h3>
@@ -91,6 +119,7 @@ import pkg from 'https://unpkg.com/version-range@^4.0.0/edition-deno/index.ts'
 <p>This package is published with the following editions:</p>
 
 <ul><li><code>version-range/source/index.ts</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> source code with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li>
+<li><code>version-range/edition-browsers/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for web browsers with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li>
 <li><code>version-range</code> aliases <code>version-range/edition-es2022/index.js</code></li>
 <li><code>version-range/edition-es2022/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> 8 || 10 || 12 || 14 || 16 || 18 || 20 || 21 with <a href="https://nodejs.org/dist/latest-v5.x/docs/api/modules.html" title="Node/CJS Modules">Require</a> for modules</li>
 <li><code>version-range/edition-es2022-esm/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> 12 || 14 || 16 || 18 || 20 || 21 with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li>

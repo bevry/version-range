@@ -2,7 +2,7 @@ export type Version = string | number
 export type Range = Version | Version[]
 
 const orRegex = /\s*\|\|\s*/
-const rangeRegex = /^\s*([<>=~^]*)\s*([\d.]+)(-.+)?\s*$/
+const rangeRegex = /^\s*([<>=~^]*)\s*([\d.]+?)[.x]*(-.+)?\s*$/
 
 /**
  * Check if the version is within the range
@@ -23,20 +23,22 @@ export default function withinVersionRange(
 	const subjectMinorNumber = Number(subjectMinor || 0)
 	const subjectPatchNumber = Number(subjectPatch || 0)
 
-	// cycle through the or conditions
+	// cycle through the conditions
 	let combinedResult: boolean = false
 	if (!Array.isArray(range)) range = String(range).split(orRegex)
-	for (const orRange of range) {
+	for (const condition of range) {
 		// process range
 		const [_, comparator, target, prerelease] =
-			String(orRange).match(rangeRegex) || []
+			String(condition).match(rangeRegex) || []
 
 		// prepare and verify target
 		const [targetMajor = null, targetMinor = null, targetPatch = null] = (
 			target || ''
 		).split('.')
 		if (!target || targetMajor == null || prerelease)
-			throw new Error(`range was invalid: ${JSON.stringify(orRange)}`)
+			throw new Error(
+				`range condition was invalid: ${JSON.stringify(condition)}`
+			)
 		const targetMajorNumber = Number(targetMajor || 0)
 		const targetMinorNumber = Number(targetMinor || 0)
 		const targetPatchNumber = Number(targetPatch || 0)
@@ -164,7 +166,7 @@ export default function withinVersionRange(
 				break
 			default:
 				throw new Error(
-					`range comparator was invalid: ${JSON.stringify(orRange)}`
+					`range comparator was invalid: ${JSON.stringify(condition)}`
 				)
 		}
 		if (pass) combinedResult = true

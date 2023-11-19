@@ -17,6 +17,7 @@ type Results = Array<
 >
 
 const versions = [
+	// don't put .x.x here, as .x is a range, not a version
 	'1',
 	'2',
 	'1.0',
@@ -68,6 +69,8 @@ const readmeResults: Results = [
 
 	['1', '^1', true],
 	['1', '~1', false],
+	['1', '^1.1', false],
+	['1', '~1.1', false],
 	['1.0.0', '^1', true],
 	['1.0.0', '~1', true],
 ]
@@ -78,10 +81,21 @@ const indexResults: Results = [
 	['1.1', '^1.0', true],
 	['1', '^1.1', false],
 
+	['1', '^1', true],
 	['1', '~1', false],
+	['1.0', '^1', true],
 	['1.0', '~1', true],
+	['1.0', '^1.0', true],
 	['1.0', '~1.0', true],
+	['1.0.0', '^1', true],
+	['1.0.0', '~1', true],
+	['1.0.1', '^1', true],
+	['1.0.1', '~1', true],
+	['1.1.0', '^1', true],
+	['1.1.0', '~1', false],
+	['1.1', '^1.0', true],
 	['1.1', '~1.0', false],
+	['1', '^1.1', false],
 	['1', '~1.1', false],
 
 	['1', '>2', false],
@@ -206,6 +220,28 @@ const indexResults: Results = [
 	['1.1.1', '1', true],
 	['1.1.1', '1.1.1', true],
 	['1.1.1', '1.1.2', false],
+
+	['1', '1.x', true],
+	['2', '1.x', false],
+	['1.0', '1.x', true],
+	['1.1', '1.x', true],
+	['2.0', '1.x', false],
+	['2.1', '1.x', false],
+	['1.0.0', '1.x', true],
+	['1.1.1', '1.x', true],
+	['2.0.0', '1.x', false],
+	['2.1.1', '1.x', false],
+
+	['1', '1.x.x', true],
+	['2', '1.x.x', false],
+	['1.0', '1.x.x', true],
+	['1.1', '1.x.x', true],
+	['2.0', '1.x.x', false],
+	['2.1', '1.x.x', false],
+	['1.0.0', '1.x.x', true],
+	['1.1.1', '1.x.x', true],
+	['2.0.0', '1.x.x', false],
+	['2.1.1', '1.x.x', false],
 ]
 
 kava.suite('version-range', function (suite, test) {

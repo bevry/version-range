@@ -1,5 +1,11 @@
 # History
 
+## v4.1.0 2023 November 20
+
+-   Support `.x` and `.x.x` suffixes in version ranges
+-   Added browser export, close [#132](https://github.com/bevry/version-range/pull/132)
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v4.0.0 2023 November 19
 
 -   Support `^` and `~` in version ranges

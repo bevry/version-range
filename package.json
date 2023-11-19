@@ -1,10 +1,11 @@
 {
   "name": "version-range",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Check version ranges like `>=N` and `X || Y || Z` with support for Node.js, Web Browsers, Deno, and TypeScript.",
   "homepage": "https://github.com/bevry/version-range",
   "license": "Artistic-2.0",
   "keywords": [
+    "browser",
     "compare",
     "conditional",
     "deno",
@@ -14,6 +15,7 @@
     "es2022",
     "export-default",
     "gte",
+    "module",
     "node",
     "node.js",
     "nodejs",
@@ -96,6 +98,20 @@
       "engines": false
     },
     {
+      "description": "TypeScript compiled against ES2022 for web browsers with Import for modules",
+      "directory": "edition-browsers",
+      "entry": "index.js",
+      "tags": [
+        "compiled",
+        "javascript",
+        "import"
+      ],
+      "engines": {
+        "node": false,
+        "browsers": "defaults"
+      }
+    },
+    {
       "description": "TypeScript compiled against ES2022 for Node.js 8 || 10 || 12 || 14 || 16 || 18 || 20 || 21 with Require for modules",
       "directory": "edition-es2022",
       "entry": "index.js",
@@ -136,7 +152,7 @@
       ],
       "engines": {
         "deno": true,
-        "browsers": false
+        "browsers": true
       }
     }
   ],
@@ -147,9 +163,14 @@
     "node": {
       "import": "./edition-es2022-esm/index.js",
       "require": "./edition-es2022/index.js"
+    },
+    "browser": {
+      "import": "./edition-browsers/index.js"
     }
   },
   "deno": "edition-deno/index.ts",
+  "browser": "edition-browsers/index.js",
+  "module": "edition-browsers/index.js",
   "devDependencies": {
     "@bevry/json": "^1.9.0",
     "@bevry/update-contributors": "^1.23.0",
@@ -168,12 +189,14 @@
     "surge": "^0.23.1",
     "typedoc": "^0.25.3",
     "typescript": "5.2.2",
-    "valid-directory": "^4.4.0"
+    "valid-directory": "^4.4.0",
+    "valid-module": "^2.3.0"
   },
   "scripts": {
     "our:clean": "rm -rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
-    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-es2022 && npm run our:compile:edition-es2022-esm && npm run our:compile:types",
+    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-browsers && npm run our:compile:edition-es2022 && npm run our:compile:edition-es2022-esm && npm run our:compile:types",
     "our:compile:deno": "make-deno-edition --attempt",
+    "our:compile:edition-browsers": "tsc --module ESNext --target ES2022 --outDir ./edition-browsers --project tsconfig.json && ( test ! -d edition-browsers/source || ( mv edition-browsers/source edition-temp && rm -rf edition-browsers && mv edition-temp edition-browsers ) )",
     "our:compile:edition-es2022": "tsc --module commonjs --target ES2022 --outDir ./edition-es2022 --project tsconfig.json && ( test ! -d edition-es2022/source || ( mv edition-es2022/source edition-temp && rm -rf edition-es2022 && mv edition-temp edition-es2022 ) ) && printf '%s' '{\"type\": \"commonjs\"}' > edition-es2022/package.json",
     "our:compile:edition-es2022-esm": "tsc --module ESNext --target ES2022 --outDir ./edition-es2022-esm --project tsconfig.json && ( test ! -d edition-es2022-esm/source || ( mv edition-es2022-esm/source edition-temp && rm -rf edition-es2022-esm && mv edition-temp edition-es2022-esm ) ) && printf '%s' '{\"type\": \"module\"}' > edition-es2022-esm/package.json",
     "our:compile:types": "tsc --project tsconfig.json --emitDeclarationOnly --declaration --declarationMap --declarationDir ./compiled-types && ( test ! -d compiled-types/source || ( mv compiled-types/source edition-temp && rm -rf compiled-types && mv edition-temp compiled-types ) )",
@@ -192,9 +215,10 @@
     "our:setup": "npm run our:setup:install",
     "our:setup:install": "npm install",
     "our:test": "npm run our:verify && npm test",
-    "our:verify": "npm run our:verify:directory && npm run our:verify:eslint && npm run our:verify:prettier",
+    "our:verify": "npm run our:verify:directory && npm run our:verify:eslint && npm run our:verify:module && npm run our:verify:prettier",
     "our:verify:directory": "valid-directory",
     "our:verify:eslint": "eslint --fix --ignore-pattern '**/*.d.ts' --ignore-pattern '**/vendor/' --ignore-pattern '**/node_modules/' --ext .mjs,.js,.jsx,.ts,.tsx ./source",
+    "our:verify:module": "valid-module",
     "our:verify:prettier": "prettier --write .",
     "test": "node ./edition-es2022/test.js"
   },
@@ -209,6 +233,7 @@
     "trailingComma": "es5"
   },
   "boundation": {
+    "browser": true,
     "nodeVersionTestedMinimum": 8
   }
 }

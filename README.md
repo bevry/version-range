@@ -71,7 +71,7 @@ console.log(satisfies('1.0.0', '~1')) // true
 
 The above results are expected, but not what the [`semver` package](https://www.npmjs.com/package/semver) returns. The semver package has two different behaviours based on whether the version is coerced or not, alternating between expected and unexpected results. This package differs to match our actual expectations, as you can see above.
 
-Doesn't support ranges that include `&&`, `-releaseTag`, and `>X <Y`, and does not do the special handling for `0.x` versions.
+Doesn't do special handling for `-releaseTag` and `0.x` versions.
 
 <!-- INSTALL/ -->
 
@@ -87,14 +87,14 @@ Doesn't support ranges that include `&&`, `-releaseTag`, and `>X <Y`, and does n
 <a href="https://deno.land" title="Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js"><h3>Deno</h3></a>
 
 ``` typescript
-import pkg from 'https://unpkg.com/version-range@^4.1.0/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/version-range@^4.2.0/edition-deno/index.ts'
 ```
 
 <a href="https://www.skypack.dev" title="Skypack is a JavaScript Delivery Network for modern web apps"><h3>Skypack</h3></a>
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.skypack.dev/version-range@^4.1.0'
+    import pkg from '//cdn.skypack.dev/version-range@^4.2.0'
 </script>
 ```
 
@@ -102,7 +102,7 @@ import pkg from 'https://unpkg.com/version-range@^4.1.0/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/version-range@^4.1.0'
+    import pkg from '//unpkg.com/version-range@^4.2.0'
 </script>
 ```
 
@@ -110,7 +110,7 @@ import pkg from 'https://unpkg.com/version-range@^4.1.0/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/version-range@4.1.0'
+    import pkg from '//dev.jspm.io/version-range@4.2.0'
 </script>
 ```
 

@@ -1,5 +1,9 @@
 # History
 
+## v4.2.0 2023 November 20
+
+-   Support and/combined conditions
+
 ## v4.1.0 2023 November 20
 
 -   Support `.x` and `.x.x` suffixes in version ranges

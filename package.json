@@ -234,6 +234,6 @@
   },
   "boundation": {
     "browser": true,
-    "nodeVersionTestedMinimum": 8
+    "nodeVersionsTestedRange": ">=8"
   }
 }

@@ -1,5 +1,9 @@
 # History
 
+## v4.6.0 2023 November 23
+
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v4.5.1 2023 November 23
 
 -   Fix incompatibility with editions, due to v4.5.0 and v4.4.0 requiring editions to operate

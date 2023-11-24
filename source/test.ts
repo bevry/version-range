@@ -1,10 +1,19 @@
+// local
+import versionRange from './index.js'
+
+// external
 import { deepEqual, equal } from 'assert-helpers'
 import kava from 'kava'
 import { readJSON, writeJSON } from '@bevry/json'
 // import { coerce, satisfies } from 'semver'
 
-import versionRange from './index.js'
+// paths
+import { join } from 'path'
+import filedirname from 'filedirname'
+const [file, dir] = filedirname()
+const testFixturesPath = join(dir, '..', 'test', 'test-fixtures.json')
 
+// types
 type Inputs = Array<[version: string, range: string]>
 type Results = Array<
 	[
@@ -16,6 +25,7 @@ type Results = Array<
 	]
 >
 
+// vars
 const versions = [
 	// don't put .x.x here, as .x is a range, not a version
 	'1',
@@ -310,7 +320,7 @@ kava.suite('version-range', function (suite, test) {
 		}
 	})
 	test('load', function (done) {
-		readJSON<Results>('test/test-fixtures.json')
+		readJSON<Results>(testFixturesPath)
 			.then((results) => {
 				expectations.push(...results)
 				done()
@@ -329,7 +339,7 @@ kava.suite('version-range', function (suite, test) {
 		}
 	})
 	// test('save changes', function (done) {
-	// 	writeJSON('test/test-fixtures.json', actuals)
+	// 	writeJSON(testFixturesPath, actuals)
 	// 		.then(() => done())
 	// 		.catch(done)
 	// })

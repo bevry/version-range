@@ -1,6 +1,6 @@
 {
   "name": "version-range",
-  "version": "4.6.0",
+  "version": "4.7.0",
   "description": "Check version ranges like `>=N` and `X || Y || Z` with support for Node.js, Web Browsers, Deno, and TypeScript.",
   "homepage": "https://github.com/bevry/version-range",
   "license": "Artistic-2.0",
@@ -187,7 +187,7 @@
   "devDependencies": {
     "@bevry/json": "^2.0.0",
     "@bevry/update-contributors": "^1.23.0",
-    "@types/node": "^20.9.5",
+    "@types/node": "^20.10.0",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
     "assert-helpers": "^11.5.0",

@@ -247,11 +247,8 @@
     "trailingComma": "es5"
   },
   "boundation": {
-    "comment": "editions depends upon version-range, as such version-range must support Node.js v4, target ES5, and not use editions",
+    "comment": "editions depends upon version-range, as such version-range must support Node.js v4 and not use editions",
     "browser": true,
-    "compiler": "typescript",
-    "targets": [
-      "ES5"
-    ]
+    "editionsAutoloader": false
   }
 }

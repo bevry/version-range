@@ -1,6 +1,6 @@
 {
   "name": "version-range",
-  "version": "4.9.0",
+  "version": "4.10.0",
   "description": "Check version ranges like `>=N` and `X || Y || Z` with support for Node.js, Web Browsers, Deno, and TypeScript.",
   "homepage": "https://github.com/bevry/version-range",
   "license": "Artistic-2.0",
@@ -188,17 +188,17 @@
   "devDependencies": {
     "@bevry/json": "^2.1.0",
     "@bevry/update-contributors": "^1.23.0",
-    "@types/node": "^20.10.0",
-    "@typescript-eslint/eslint-plugin": "^6.13.1",
-    "@typescript-eslint/parser": "^6.13.1",
-    "assert-helpers": "^11.6.0",
-    "eslint": "^8.54.0",
+    "@types/node": "^20.10.3",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "assert-helpers": "^11.8.0",
+    "eslint": "^8.55.0",
     "eslint-config-bevry": "^5.2.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
     "filedirname": "^3.1.0",
     "kava": "^7.4.0",
-    "make-deno-edition": "^2.0.0",
+    "make-deno-edition": "^2.0.1",
     "prettier": "^3.1.0",
     "projectz": "^3.4.0",
     "typedoc": "^0.25.4",
@@ -244,7 +244,8 @@
   "prettier": {
     "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "endOfLine": "lf"
   },
   "boundation": {
     "comment": "editions depends upon version-range, as such version-range must support Node.js v4 and not use editions",

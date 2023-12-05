@@ -87,14 +87,14 @@ Doesn't do special handling for `-releaseTag` and `0.x` versions.
 <a href="https://deno.land" title="Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js"><h3>Deno</h3></a>
 
 ``` typescript
-import pkg from 'https://unpkg.com/version-range@^4.9.0/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/version-range@^4.10.0/edition-deno/index.ts'
 ```
 
 <a href="https://www.skypack.dev" title="Skypack is a JavaScript Delivery Network for modern web apps"><h3>Skypack</h3></a>
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.skypack.dev/version-range@^4.9.0'
+    import pkg from '//cdn.skypack.dev/version-range@^4.10.0'
 </script>
 ```
 
@@ -102,7 +102,7 @@ import pkg from 'https://unpkg.com/version-range@^4.9.0/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/version-range@^4.9.0'
+    import pkg from '//unpkg.com/version-range@^4.10.0'
 </script>
 ```
 
@@ -110,7 +110,7 @@ import pkg from 'https://unpkg.com/version-range@^4.9.0/edition-deno/index.ts'
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/version-range@4.9.0'
+    import pkg from '//dev.jspm.io/version-range@4.10.0'
 </script>
 ```
 

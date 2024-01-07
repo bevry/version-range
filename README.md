@@ -71,6 +71,22 @@ The above results are expected, but not what the [`semver` package](https://www.
 
 Doesn't do special handling for `-releaseTag` and `0.x` versions.
 
+## Related
+
+This package comprises this suite of related packages:
+
+-   [version-clean](https://github.com/bevry/version-clean)
+-   [version-compare](https://github.com/bevry/version-compare)
+-   [version-range](https://github.com/bevry/version-range)
+
+And if you are specifically interested in Node.js and ECMAScript versions:
+
+-   [ecmascript-versions](https://github.com/bevry/ecmascript-versions)
+-   [nodejs-ecmascript-compatibility](https://github.com/bevry/nodejs-ecmascript-compatibility)
+-   [nodejs-releases](https://github.com/bevry/nodejs-releases)
+-   [nodejs-schedule](https://github.com/bevry/nodejs-schedule)
+-   [nodejs-versions](https://github.com/bevry/nodejs-versions)
+
 <!-- INSTALL/ -->
 
 ## Install
@@ -84,27 +100,27 @@ Doesn't do special handling for `-releaseTag` and `0.x` versions.
 ### [Deno](https://deno.land "Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js")
 
 ``` typescript
-import pkg from 'https://unpkg.com/version-range@^4.13.0/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/version-range@^4.14.0/edition-deno/index.ts'
 ```
 ### [Skypack](https://www.skypack.dev "Skypack is a JavaScript Delivery Network for modern web apps")
 
 ``` html
 <script type="module">
-    import pkg from '//cdn.skypack.dev/version-range@^4.13.0'
+    import pkg from '//cdn.skypack.dev/version-range@^4.14.0'
 </script>
 ```
 ### [unpkg](https://unpkg.com "unpkg is a fast, global content delivery network for everything on npm")
 
 ``` html
 <script type="module">
-    import pkg from '//unpkg.com/version-range@^4.13.0'
+    import pkg from '//unpkg.com/version-range@^4.14.0'
 </script>
 ```
 ### [jspm](https://jspm.io "Native ES Modules CDN")
 
 ``` html
 <script type="module">
-    import pkg from '//dev.jspm.io/version-range@4.13.0'
+    import pkg from '//dev.jspm.io/version-range@4.14.0'
 </script>
 ```
 ### [Editions](https://editions.bevry.me "Editions are the best way to produce and consume packages you care about.")
@@ -164,6 +180,8 @@ This package is published with the following editions:
 -   [Andrew Nesbitt](https://nesbitt.io) — Software engineer and researcher
 -   [Balsa](https://balsa.com) — We're Balsa, and we're building tools for builders.
 -   [Codecov](https://codecov.io) — Empower developers with tools to improve code quality and testing.
+-   [Frontend Masters](https://FrontendMasters.com) — The training platform for web app engineering skills – from front-end to full-stack! 🚀
+-   [Mr. Henry](https://mrhenry.be)
 -   [Poonacha Medappa](https://poonachamedappa.com)
 -   [Rob Morris](https://github.com/Rob-Morris)
 -   [Sentry](https://sentry.io) — Real-time crash reporting for your web apps, mobile apps, and games.
@@ -179,6 +197,7 @@ This package is published with the following editions:
 -   [dr.dimitru](https://veliovgroup.com)
 -   [Elliott Ditman](https://elliottditman.com)
 -   [entroniq](https://gitlab.com/entroniq)
+-   [Frontend Masters](https://FrontendMasters.com)
 -   [GitHub](https://github.com/about)
 -   [Hunter Beast](https://cryptoquick.com)
 -   [Jean-Luc Geering](https://github.com/jlgeering)
@@ -187,7 +206,7 @@ This package is published with the following editions:
 -   [Mohammed Shah](https://github.com/smashah)
 -   [Mr. Henry](https://mrhenry.be)
 -   [Nermal](https://arjunaditya.vercel.app)
--   [Pleo](https://www.pleo.io)
+-   [Pleo](https://pleo.io)
 -   [Poonacha Medappa](https://poonachamedappa.com)
 -   [Rob Morris](https://github.com/Rob-Morris)
 -   [Robert de Forest](https://github.com/rdeforest)

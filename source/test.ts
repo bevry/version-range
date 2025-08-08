@@ -2,15 +2,15 @@
 import versionRange from './index.js'
 
 // external
-import { deepEqual, equal } from 'assert-helpers'
+import { deepEqual } from 'assert-helpers' // equal
 import kava from 'kava'
-import { readJSON, writeJSON } from '@bevry/json'
+import { readJSON } from '@bevry/json' // writeJSON
 // import { coerce, satisfies } from 'semver'
 
 // paths
 import { join } from 'path'
 import filedirname from 'filedirname'
-const [file, dir] = filedirname()
+const [, dir] = filedirname()
 const testFixturesPath = join(dir, '..', 'test', 'test-fixtures.json')
 
 // types
